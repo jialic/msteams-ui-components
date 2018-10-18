@@ -24,12 +24,13 @@ interface ICheckboxContext {
 type ConnectedProps = ICheckboxProps & IInjectedTeamsProps;
 
 class CheckboxInner extends React.Component<ConnectedProps, ICheckboxState> {
-  static propTypes = {
+  // TODO: remove as any when @types are updated
+  static propTypes: PropTypes.ValidationMap<ConnectedProps> = {
     onChecked: PropTypes.func,
     value: PropTypes.any.isRequired,
     checked: PropTypes.bool,
     label: PropTypes.string,
-  };
+  } as any;
 
   static contextTypes = {
     onChecked: PropTypes.func,
@@ -65,7 +66,7 @@ class CheckboxInner extends React.Component<ConnectedProps, ICheckboxState> {
           onClick={this.click}
           required={required}
           readOnly
-          {...rest}/>
+          {...rest} />
         <span aria-hidden className={themeClassNames.checkbox}></span>
       </label>
     );

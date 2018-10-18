@@ -52,22 +52,25 @@ function base(context: IContext, colors: ITextAreaColors) {
       display: 'flex',
       flexDirection: 'column',
     }),
-    textArea: css(names.textarea, {
-      flex: `1 1 auto`,
-      width: '100%',
-      borderRadius: rem(0.3),
-      border: `${rem(0.2)} solid ${colors.rest.border}`,
-      background: colors.rest.background,
-      padding: `${rem(0.8)} ${rem(1.2)}`,
-      margin: 0,
-      color: colors.rest.text,
-      font: 'inherit',
-      outline: 'none',
-      ['-webkit-box-sizing']: 'border-box',
-      ['-moz-box-sizing']: 'border-box',
-      boxSizing: 'border-box',
-      resize: 'none',
-    }, {
+    textArea: css(
+      names.textarea,
+      {
+        flex: '1 1 auto',
+        width: '100%',
+        borderRadius: rem(0.3),
+        border: `${rem(0.2)} solid ${colors.rest.border}`,
+        background: colors.rest.background,
+        padding: `${rem(0.8)} ${rem(1.2)}`,
+        margin: 0,
+        color: colors.rest.text,
+        font: 'inherit',
+        outline: 'none',
+        ['-webkit-box-sizing']: 'border-box',
+        ['-moz-box-sizing']: 'border-box',
+        boxSizing: 'border-box',
+        resize: 'none',
+      },
+      {
         $nest: {
           '&:active:enabled': {
             background: colors.active.background,

@@ -10,17 +10,17 @@ function base(context: IContext, colors: ILabelColors) {
   const { sizes, weights } = font;
 
   return css(name,
-    sizes.caption, weights.regular, {
-    display: 'inline-block',
-    color: colors.text,
-    padding: 0,
-    border: 0,
-    marginBottom: rem(0.8),
-    marginLeft: 0,
-    marginRight: 0,
-    marginTop: 0,
-    float: 'left',
-  });
+             sizes.caption, weights.regular, {
+               display: 'inline-block',
+               color: colors.text,
+               padding: 0,
+               border: 0,
+               marginBottom: rem(0.8),
+               marginLeft: 0,
+               marginRight: 0,
+               marginTop: 0,
+               float: 'left',
+             });
 }
 
 function light(context: IContext) {

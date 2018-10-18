@@ -14,16 +14,18 @@ export interface IRadiobuttonGroupProps
   value?: any;
 }
 
-class RadiobuttonGroupInner extends React.Component<IRadiobuttonGroupProps & IInjectedTeamsProps> {
+type Props = IRadiobuttonGroupProps & IInjectedTeamsProps;
+
+class RadiobuttonGroupInner extends React.Component<Props> {
   static childContextTypes = {
     onSelected: PropTypes.func,
     value: PropTypes.any,
   };
 
-  static propTypes = {
+  static propTypes: PropTypes.ValidationMap<Props> = {
     onSelected: PropTypes.func,
     value: PropTypes.any,
-  };
+  } as any;
 
   state = {
     labelId: uniqueId('ts-rgl'),

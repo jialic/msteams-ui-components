@@ -1,4 +1,4 @@
-Microsoft Teams UI Icons - Core
+Microsoft Teams UI Icons
 Copyright (c) Microsoft Corporation
 All rights reserved.
 

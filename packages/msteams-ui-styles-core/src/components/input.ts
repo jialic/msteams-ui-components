@@ -67,22 +67,24 @@ function base(context: IContext, colors: IInputColors) {
       position: 'relative',
       display: 'block',
     }),
-    input: css(names.input, {
-      clear: 'both',
-      height: rem(3.2),
-      width: '100%',
-      borderRadius: rem(0.3),
-      border: `${rem(0.2)} solid ${colors.rest.border}`,
-      background: colors.rest.background,
-      padding: `${rem(0.8)} ${rem(1.2)}`,
-      margin: 0,
-      color: colors.rest.text,
-      font: 'inherit',
-      outline: 'none',
-      ['-webkit-box-sizing']: 'border-box',
-      ['-moz-box-sizing']: 'border-box',
-      boxSizing: 'border-box',
-    }, {
+    input: css(
+      names.input, {
+        clear: 'both',
+        height: rem(3.2),
+        width: '100%',
+        borderRadius: rem(0.3),
+        border: `${rem(0.2)} solid ${colors.rest.border}`,
+        background: colors.rest.background,
+        padding: `${rem(0.8)} ${rem(1.2)}`,
+        margin: 0,
+        color: colors.rest.text,
+        font: 'inherit',
+        outline: 'none',
+        ['-webkit-box-sizing']: 'border-box',
+        ['-moz-box-sizing']: 'border-box',
+        boxSizing: 'border-box',
+      },
+      {
         $nest: {
           '&:active:enabled': {
             background: colors.active.background,

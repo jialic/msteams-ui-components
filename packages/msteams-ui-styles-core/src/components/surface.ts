@@ -11,10 +11,10 @@ function base(context: IContext, colors: ISurfaceColors) {
   const { sizes, weights } = font;
 
   return css(name,
-    weights.regular, sizes.base, {
-    color: colors.font,
-    backgroundColor: colors.background,
-  });
+             weights.regular, sizes.base, {
+               color: colors.font,
+               backgroundColor: colors.background,
+             });
 }
 
 function light(context: IContext) {

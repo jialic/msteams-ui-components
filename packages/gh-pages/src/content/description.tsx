@@ -2,34 +2,34 @@ import { Anchor, ConnectedComponent, Panel, PanelBody, PanelFooter, PanelHeader 
 import * as React from 'react';
 
 export const Description: React.StatelessComponent = () => {
-  return <ConnectedComponent render={(props) => {
-      const { context } = props;
-      const { rem, font } = context;
-      const { sizes, weights } = font;
+  return <ConnectedComponent render={(props: any) => {
+    const { context } = props;
+    const { rem, font } = context;
+    const { sizes, weights } = font;
 
-      const styles = {
-        header: { ...sizes.title, ...weights.semibold },
-        section: { ...sizes.title2, marginTop: rem(1.4), marginBottom: rem(1.4) },
-        button: {marginRight: rem(0.5) },
-      };
+    const styles = {
+      header: { ...sizes.title, ...weights.semibold },
+      section: { ...sizes.title2, marginTop: rem(1.4), marginBottom: rem(1.4) },
+      button: { marginRight: rem(0.5) },
+    };
 
-      return <Panel>
-        <PanelHeader>
-          <div style={styles.header}>Home</div>
-        </PanelHeader>
-        <PanelBody>
-          <div style={styles.section}>Intro</div>
-          <p>
+    return <Panel>
+      <PanelHeader>
+        <div style={styles.header}>Home</div>
+      </PanelHeader>
+      <PanelBody>
+        <div style={styles.section}>Intro</div>
+        <p>
           We've built a few libraries to help you make apps styled after the Microsoft Teams design guidelines.
           These give you controls, styles, and fonts that will easily make your apps have the look and feel
           common to other
           <Anchor
             target="_blank"
             href="https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/apps/apps-overview"
-            > Microsoft Teams apps
+          > Microsoft Teams apps
           </Anchor>.
           </p>
-          <p>
+        <p>
           Here they are:
           <ul>
             <li><Anchor
@@ -47,38 +47,38 @@ export const Description: React.StatelessComponent = () => {
             <li><Anchor
               target="_blank"
               href="https://www.npmjs.com/package/msteams-ui-icons-react">
-                msteams-ui-styles-react
+              msteams-ui-styles-react
               </Anchor> - The React binding library for the set of Teams icons.
               It depends on msteams-ui-icons-core and React.</li>
           </ul>
-          </p>
-          <p>
+        </p>
+        <p>
           For more information, the links above will take you to npmjs.com and show the usage instructions.
           </p>
-          <p>
+        <p>
           We are considering additional libraries for, e.g., Angular bindings. We welcome your feedback and
           suggestions at
          <Anchor
             target="_blank"
             href="mailto:microsoftteamsdev@microsoft.com"
-            > microsoftteamsdev@microsoft.com
+          > microsoftteamsdev@microsoft.com
           </Anchor>.
           </p>
-          <div style={styles.section}>About this page</div>
-          <p>
+        <div style={styles.section}>About this page</div>
+        <p>
           This page was built using React and it uses the msteams-ui-components-react and msteams-ui-icons-react
           libraries to render and showcase the supported components.
           </p>
-          <p>
+        <p>
           You can find the code for this page
           <Anchor
             target="_blank"
             href="https://github.com/OfficeDev/msteams-ui-components/tree/master/gh-pages"> here.
           </Anchor>
-          </p>
-        </PanelBody>
-        <PanelFooter>
-        </PanelFooter>
-      </Panel>;
-    }} />;
+        </p>
+      </PanelBody>
+      <PanelFooter>
+      </PanelFooter>
+    </Panel>;
+  }} />;
 };

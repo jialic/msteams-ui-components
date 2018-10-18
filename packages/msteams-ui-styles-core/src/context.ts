@@ -2,10 +2,10 @@ import { style } from 'typestyle/lib';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { ColorPalate, Colors } from './colors';
 import { IFontSizePalate } from './font-size-palate';
-import { FontSizes } from './font-sizes';
+import { fontSizes } from './font-sizes';
 import { IFontWeightPalate } from './font-weight-palate';
-import { FontWeights } from './font-weights';
-import { Spacing } from './spacing';
+import { fontWeights } from './font-weights';
+import { spacing } from './spacing';
 import { ISpacingPalate } from './spacing-palate';
 import { IThemeConfig } from './theme-config';
 import { ThemeStyle } from './theme-style';
@@ -15,7 +15,7 @@ export interface IRemFunction {
 }
 
 export interface ICSSFunction {
-  (name: string, ...objects: Array<false | NestedCSSProperties | null | undefined>): string;
+  (name: string, ...objects: (false | NestedCSSProperties | null | undefined)[]): string;
 }
 
 export interface IStyleFunction<T> {
@@ -43,16 +43,16 @@ export function chooseStyle<T>(
   highContrast: IStyleFunction<T>): T {
   if (context.style === ThemeStyle.HighContrast) {
     return highContrast(context);
-  } else if (context.style === ThemeStyle.Dark) {
-    return dark(context);
-  } else {
-    return light(context);
   }
+  if (context.style === ThemeStyle.Dark) {
+    return dark(context);
+  }
+  return light(context);
 }
 
 // Adds the base styles that all components require.
 function baseStyleWrapper(styleFunction: ICSSFunction): ICSSFunction {
-  return (name: string, ...objects: Array<false | NestedCSSProperties | null | undefined>) => {
+  return (name: string, ...objects: (false | NestedCSSProperties | null | undefined)[]) => {
     const baseStyles: NestedCSSProperties = {
       boxSizing: 'border-box',
     };
@@ -61,7 +61,10 @@ function baseStyleWrapper(styleFunction: ICSSFunction): ICSSFunction {
 }
 
 // Wrapper for the typestyle style function that ignores the name parameter.
-function typestyleStyle(name: string, ...objects: Array<false | NestedCSSProperties | null | undefined>): string {
+function typestyleStyle(
+  name: string,
+  ...objects: (false | NestedCSSProperties | null | undefined)[]
+): string {
   return style(...objects);
 }
 
@@ -85,10 +88,10 @@ export function getContext(config: IThemeConfig): IContext {
     css,
     style: config.style,
     colors: config.colors || Colors,
-    spacing: Spacing(rem),
+    spacing: spacing(rem),
     font: {
-      weights: FontWeights(rem),
-      sizes: FontSizes(rem),
+      weights: fontWeights(rem),
+      sizes: fontSizes(rem),
     },
   };
 }

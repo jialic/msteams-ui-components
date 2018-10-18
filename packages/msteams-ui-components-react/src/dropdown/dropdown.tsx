@@ -66,7 +66,7 @@ class DropdownInternal extends React.Component<IDropdownProps & IInjectedTeamsPr
       mainButtonText,
       style,
       items,
-      ...rest,
+      ...rest
     } = this.props;
     const themeClassNames = dropdown(context);
 
@@ -109,7 +109,7 @@ class DropdownInternal extends React.Component<IDropdownProps & IInjectedTeamsPr
           id={this.state.expandableRegionId}
           role="listbox"
           aria-hidden={!this.state.show}
-          style={{display: this.state.show ? null : 'none'}}
+          style={{ display: this.state.show ? undefined : 'none' }}
           className={itemContainerClass.join(' ')}>
           {items.map((item, idx) => (
             <DropdownItem

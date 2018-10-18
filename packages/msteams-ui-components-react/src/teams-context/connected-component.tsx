@@ -29,7 +29,8 @@ export class ConnectedComponent
   };
   static contextTypes = ContextProps;
 
-  context: IComponentContext;
+  context!: IComponentContext;
+
   private unsubscribe: IUnsubscribe | null = null;
 
   componentWillMount() {
@@ -67,6 +68,6 @@ export class ConnectedComponent
   }
 
   private contextUpdate = (context: IContext) => {
-    this.setState({context});
+    this.setState({ context });
   }
 }

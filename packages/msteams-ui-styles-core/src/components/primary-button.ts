@@ -35,50 +35,53 @@ function base(context: IContext, colors: IPrimaryButtonColors) {
   };
   const { css, rem } = context;
 
-  return css(names.button, {
-    height: rem(3.2),
-    minWidth: rem(9.6),
-    border: rem(0.2) + ' solid',
-    borderRadius: rem(0.3),
-    padding: rem(0.4),
-    whiteSpace: 'nowrap',
-    cursor: 'pointer',
-    font: 'inherit',
-    background: colors.rest.background,
-    color: colors.rest.text,
-    borderColor: colors.rest.border,
-  }, {
-    $nest: {
-      '&:hover:enabled': {
-        background: colors.hover.background,
-        color: colors.hover.text,
-        borderColor: colors.hover.border,
-      },
-      '&:active:hover:enabled': {
-        background: colors.down.background,
-        color: colors.down.text,
-        borderColor: colors.down.border,
-      },
-      '&:active:enabled': {
-        background: colors.down.background,
-        color: colors.down.text,
-        borderColor: colors.down.border,
-      },
-      '&:focus:enabled': {
-        outline: `${rem(0.2)} solid ${colors.focus.outline}`,
-        outlineOffset: `${rem(-0.4)}`,
-        color: colors.focus.text,
-        borderColor: colors.focus.border,
-        background: colors.focus.background,
-      },
-      '&:disabled': {
-        background: colors.disabled.background,
-        color: colors.disabled.text,
-        borderColor: colors.disabled.border,
-        cursor: 'default',
-      },
+  return css(
+    names.button,
+    {
+      height: rem(3.2),
+      minWidth: rem(9.6),
+      border: `${rem(0.2)} solid`,
+      borderRadius: rem(0.3),
+      padding: rem(0.4),
+      whiteSpace: 'nowrap',
+      cursor: 'pointer',
+      font: 'inherit',
+      background: colors.rest.background,
+      color: colors.rest.text,
+      borderColor: colors.rest.border,
     },
-  });
+    {
+      $nest: {
+        '&:hover:enabled': {
+          background: colors.hover.background,
+          color: colors.hover.text,
+          borderColor: colors.hover.border,
+        },
+        '&:active:hover:enabled': {
+          background: colors.down.background,
+          color: colors.down.text,
+          borderColor: colors.down.border,
+        },
+        '&:active:enabled': {
+          background: colors.down.background,
+          color: colors.down.text,
+          borderColor: colors.down.border,
+        },
+        '&:focus:enabled': {
+          outline: `${rem(0.2)} solid ${colors.focus.outline}`,
+          outlineOffset: `${rem(-0.4)}`,
+          color: colors.focus.text,
+          borderColor: colors.focus.border,
+          background: colors.focus.background,
+        },
+        '&:disabled': {
+          background: colors.disabled.background,
+          color: colors.disabled.text,
+          borderColor: colors.disabled.border,
+          cursor: 'default',
+        },
+      },
+    });
 }
 
 function light(context: IContext) {

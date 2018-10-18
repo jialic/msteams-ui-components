@@ -1,5 +1,4 @@
-import { MemoizedFunction } from 'lodash';
-import memoize = require('lodash.memoize');
+import memoize from 'lodash.memoize';
 import { TypeStyle } from 'typestyle';
 
 export const iconWeights = {
@@ -538,13 +537,13 @@ export const baseStyle = memoize((iconWeight?: number): string => {
 
     lightFontFaceTS.fontFace({
       fontFamily: fontName,
-      src: [
-        `url('${eotFile}')`,
-        `url('${eotFile}?#iefix') format('embedded-opentype'),
+      src:
+        `url('${eotFile}'),
+        url('${eotFile}?#iefix') format('embedded-opentype'),
 url('${ttfFile}') format('truetype'),
 url('${woff2File}') format('woff2'),
 url('${woffFile}') format('woff'),
-url('${svgFile}#${fontName}') format('svg')`],
+url('${svgFile}#${fontName}') format('svg')`,
       fontWeight: 'normal',
       fontStyle: 'normal',
     });
@@ -558,13 +557,13 @@ url('${svgFile}#${fontName}') format('svg')`],
 
     regularFontFaceTS.fontFace({
       fontFamily: fontName,
-      src: [
-        `url('${eotFile}')`,
-        `url('${eotFile}?#iefix') format('embedded-opentype'),
+      src:
+        `url('${eotFile}'),
+        url('${eotFile}?#iefix') format('embedded-opentype'),
 url('${ttfFile}') format('truetype'),
 url('${woff2File}') format('woff2'),
 url('${woffFile}') format('woff'),
-url('${svgFile}#${fontName}') format('svg')`],
+url('${svgFile}#${fontName}') format('svg')`,
       fontWeight: 'normal',
       fontStyle: 'normal',
     });
@@ -582,7 +581,7 @@ url('${svgFile}#${fontName}') format('svg')`],
     textRendering: 'optimizeLegibility',
     ['-webkit-font-smoothing']: 'antialiased',
     ['-moz-osx-font-smoothing']: 'grayscale',
-  });
+  } as any);
 });
 
 export const iconStyle = memoize((iconType?: string): string | null => {

@@ -49,7 +49,7 @@ function light(context: IContext) {
   return base(context, {
     background: colors.light.white,
     border: colors.transparent,
-   });
+  });
 }
 
 function dark(context: IContext) {
@@ -57,7 +57,7 @@ function dark(context: IContext) {
   return base(context, {
     background: context.colors.dark.gray10,
     border: colors.transparent,
-   });
+  });
 }
 
 function highContrast(context: IContext) {
@@ -65,7 +65,7 @@ function highContrast(context: IContext) {
   return base(context, {
     background: context.colors.highContrast.black,
     border: colors.highContrast.white,
-   });
+  });
 }
 
 export function panel(context: IContext) {

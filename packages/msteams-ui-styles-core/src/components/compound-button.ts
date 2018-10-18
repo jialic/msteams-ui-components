@@ -41,45 +41,48 @@ function base(context: IContext, colors: ICompoundButtonColors) {
   const { sizes, weights } = font;
 
   return {
-    container: css(names.container, {
-      minWidth: rem(4.8),
-      minHeight: rem(4.8),
-      display: 'inline-flex',
-      alignItems: 'center',
-      padding: 0,
-      font: 'inherit',
-      verticalAlign: 'middle',
-      border: `${rem(0.2)} solid`,
-      borderColor: colors.rest.border,
-      borderRadius: rem(0.3),
-      background: colors.rest.background,
-      color: colors.rest.text,
-      cursor: 'pointer',
-    }, {
-      $nest: {
-        '&:hover:enabled': {
-          background: colors.hover.background,
-          color: colors.hover.text,
-        },
-        '&:focus': {
-          color: colors.focus.text,
-          borderColor: colors.focus.border,
-          background: colors.focus.background,
-          outline: `${rem(0.2)} solid ${colors.focus.outline}`,
-          outlineOffset: `-${rem(0.4)}`,
-        },
-        '&:active': {
-          background: colors.down.background,
-          color: colors.down.text,
-          borderColor: colors.down.border,
-        },
-        '&:disabled': {
-          background: colors.disabled.background,
-          color: colors.disabled.text,
-          borderColor: colors.disabled.border,
-        },
+    container: css(
+      names.container,
+      {
+        minWidth: rem(4.8),
+        minHeight: rem(4.8),
+        display: 'inline-flex',
+        alignItems: 'center',
+        padding: 0,
+        font: 'inherit',
+        verticalAlign: 'middle',
+        border: `${rem(0.2)} solid`,
+        borderColor: colors.rest.border,
+        borderRadius: rem(0.3),
+        background: colors.rest.background,
+        color: colors.rest.text,
+        cursor: 'pointer',
       },
-    }),
+      {
+        $nest: {
+          '&:hover:enabled': {
+            background: colors.hover.background,
+            color: colors.hover.text,
+          },
+          '&:focus': {
+            color: colors.focus.text,
+            borderColor: colors.focus.border,
+            background: colors.focus.background,
+            outline: `${rem(0.2)} solid ${colors.focus.outline}`,
+            outlineOffset: `-${rem(0.4)}`,
+          },
+          '&:active': {
+            background: colors.down.background,
+            color: colors.down.text,
+            borderColor: colors.down.border,
+          },
+          '&:disabled': {
+            background: colors.disabled.background,
+            color: colors.disabled.text,
+            borderColor: colors.disabled.border,
+          },
+        },
+      }),
     icon: css(names.icon, {
       width: rem(4.4),
       height: rem(4.4),
@@ -87,19 +90,21 @@ function base(context: IContext, colors: ICompoundButtonColors) {
       alignItems: 'center',
       overflow: 'hidden',
     }),
-    primaryText: css(names.primaryText,
+    primaryText: css(
+      names.primaryText,
       sizes.base, weights.semibold, {
-      textAlign: 'left',
-      paddingLeft: rem(1.2),
-      paddingRight: rem(1.2),
-    }),
-    secondaryText: css(names.secondaryText,
+        textAlign: 'left',
+        paddingLeft: rem(1.2),
+        paddingRight: rem(1.2),
+      }),
+    secondaryText: css(
+      names.secondaryText,
       sizes.caption, weights.regular,
       {
-      textAlign: 'left',
-      paddingLeft: rem(1.2),
-      paddingRight: rem(1.2),
-    }),
+        textAlign: 'left',
+        paddingLeft: rem(1.2),
+        paddingRight: rem(1.2),
+      }),
   };
 }
 

@@ -33,7 +33,7 @@ function base(context: IContext, colors: IIconButtonColors) {
     font: 'inherit',
     outline: 'none',
     color: 'inherit',
-  }, {
+  },         {
     $nest: {
       '&:hover:enabled': {
         color: colors.hover.text,

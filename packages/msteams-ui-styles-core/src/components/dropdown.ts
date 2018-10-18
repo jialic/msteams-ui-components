@@ -68,16 +68,16 @@ function base(context: IContext, colors: IDropdownColors) {
       minWidth: rem(2.2),
     }),
     label: css(names.label,
-      sizes.caption, {
-      display: 'inline-block',
-      padding: 0,
-      border: 0,
-      marginBottom: rem(0.8),
-      marginLeft: 0,
-      marginRight: 0,
-      marginTop: 0,
-      color: colors.label,
-    }),
+               sizes.caption, {
+                 display: 'inline-block',
+                 padding: 0,
+                 border: 0,
+                 marginBottom: rem(0.8),
+                 marginLeft: 0,
+                 marginRight: 0,
+                 marginTop: 0,
+                 color: colors.label,
+               }),
     mainButton: {
       container: css(names.button.container, {
         height: rem(3.2),
@@ -139,7 +139,7 @@ function base(context: IContext, colors: IDropdownColors) {
     showItems: css(names.item.showItems, {
       $nest: {
         [`&.${itemContainerClass}`]: {
-          minWidth: `100%`,
+          minWidth: '100%',
           transform: 'scaleY(1)',
         },
       },

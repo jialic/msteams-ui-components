@@ -21,13 +21,16 @@ interface IRadiobuttonContext {
   value?: any;
 }
 
-class RadiobuttonInner extends React.Component<IRadiobuttonProps & IInjectedTeamsProps, IRadiobuttonState> {
-  static propTypes = {
+type Props = IRadiobuttonProps & IInjectedTeamsProps;
+
+class RadiobuttonInner extends React.Component<Props, IRadiobuttonState> {
+  // TODO: remove as any when @types updated
+  static propTypes: PropTypes.ValidationMap<Props> = {
     onSelected: PropTypes.func,
     value: PropTypes.any.isRequired,
     selected: PropTypes.bool,
     label: PropTypes.string,
-  };
+  } as any;
 
   static contextTypes = {
     onSelected: PropTypes.func,
@@ -62,7 +65,7 @@ class RadiobuttonInner extends React.Component<IRadiobuttonProps & IInjectedTeam
           checked={actuallySelected}
           onClick={this.click}
           readOnly
-          {...rest}/>
+          {...rest} />
         <span aria-hidden className={themeClassNames.radio}></span>
       </label>
     );

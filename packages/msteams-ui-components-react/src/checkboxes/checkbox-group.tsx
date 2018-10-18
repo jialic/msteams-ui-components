@@ -16,16 +16,19 @@ export interface ICheckboxGroupProps
   values?: any[];
 }
 
-class CheckboxGroupInner extends React.Component<ICheckboxGroupProps & IInjectedTeamsProps> {
+type Props = ICheckboxGroupProps & IInjectedTeamsProps;
+
+class CheckboxGroupInner extends React.Component<Props> {
   static childContextTypes = {
     onChecked: PropTypes.func,
     values: PropTypes.array,
   };
 
-  static propTypes = {
+  // TODO: remove as any when @types are updated
+  static propTypes: PropTypes.ValidationMap<Props> = {
     onChecked: PropTypes.func,
     values: PropTypes.array,
-  };
+  } as any;
 
   state = {
     labelId: uniqueId('ts-rgl'),
@@ -36,7 +39,7 @@ class CheckboxGroupInner extends React.Component<ICheckboxGroupProps & IInjected
     const {
       context, className, onChecked,
       values, label, errorLabel, children,
-       ...rest} = this.props;
+      ...rest } = this.props;
     const themeClassNames = checkboxGroup(context);
     const actualId = this.state.groupId;
 

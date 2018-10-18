@@ -10,17 +10,17 @@ function base(context: IContext, colors: IErrorLabelColors) {
   const { sizes, weights } = font;
 
   return css(name,
-    sizes.caption, weights.regular, {
-    display: 'inline-block',
-    color: colors.text,
-    padding: 0,
-    border: 0,
-    marginBottom: rem(0.8),
-    marginLeft: 0,
-    marginRight: 0,
-    marginTop: 0,
-    float: 'right',
-  });
+             sizes.caption, weights.regular, {
+               display: 'inline-block',
+               color: colors.text,
+               padding: 0,
+               border: 0,
+               marginBottom: rem(0.8),
+               marginLeft: 0,
+               marginRight: 0,
+               marginTop: 0,
+               float: 'right',
+             });
 }
 
 function light(context: IContext) {

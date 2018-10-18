@@ -27,7 +27,7 @@ function base(context: IContext, colors: IAnchorColors) {
     textDecoration: 'none',
     color: colors.rest.text,
     outline: 'none',
-  }, {
+  },                 {
     $nest: {
       '&:link': {
         textDecoration: 'none',

@@ -1,6 +1,7 @@
 {
-  "name": "msteams-ui-components-react",
-  "version": "0.7.3",
+  "name": "msteams-ui-icons-core",
+  "description": "MSTeams UI Icon Library Core",
+  "version": "0.3.0",
   "main": "./dist/index.js",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -11,6 +12,10 @@
   "bugs": {
     "url": "https://github.com/OfficeDev/msteams-ui-components/issues"
   },
+  "author": {
+    "name": "Microsoft Corporation"
+  },
+  "license": "MIT",
   "scripts": {
     "prepublishOnly": "yarn && yarn build",
     "build": "tsc -b",
@@ -18,25 +23,14 @@
     "lint": "tslint --project tsconfig.json",
     "lint:fix": "tslint --project tsconfig.json --fix"
   },
-  "author": {
-    "name": "Microsoft Corporation"
-  },
-  "license": "MIT",
   "dependencies": {
-    "mousetrap": "^1.6.1",
-    "msteams-ui-icons-react": "^0.3.0",
-    "msteams-ui-styles-core": "^0.7.3"
+    "lodash.memoize": "^4.1.2"
   },
   "peerDependencies": {
-    "@types/prop-types": ">=15.0.0 <16.0.0",
-    "@types/react": ">=16.0.0 <17.0.0",
-    "prop-types": ">=15.0.0 <16.0.0",
-    "react": ">=16.0.0 <17.0.0",
     "typestyle": "^1.5.1 || >=2.0.0 <3.0.0"
   },
   "devDependencies": {
     "@types/lodash.memoize": "^4.1.3",
-    "@types/mousetrap": "^1.5.34",
     "@types/node": "^8.0.50",
     "tslint": "^5.11.0",
     "typescript": "^3.1.3"
