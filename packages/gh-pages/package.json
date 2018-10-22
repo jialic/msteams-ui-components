@@ -5,7 +5,7 @@
     "build": "webpack --config webpack.prod.js -p",
     "dev": "webpack-dev-server --config webpack.dev.js",
     "lint": "tslint --project tsconfig.json",
-    "link:deps": "yarn link msteams-ui-components-react && yarn link msteams-ui-icons-react"
+    "lint:fix": "tslint --project tsconfig.json --fix"
   },
   "author": {
     "name": "Microsoft Corporation"

@@ -6,7 +6,9 @@
   "name": "msteams-ui-components",
   "scripts": {
     "bootstrap": "lerna bootstrap && lerna link",
-    "build": "lerna run build --stream"
+    "build": "lerna run build --stream",
+    "lint": "lerna run lint --stream",
+    "lint:fix": "lerna run lint:fix --stream"
   },
   "dependencies": {
     "react": "^16.5.2",
