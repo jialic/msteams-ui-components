@@ -1,28 +1,27 @@
 {
   "name": "gh-pages",
   "version": "0.0.1",
+  "author": {
+    "name": "Microsoft Corporation"
+  },
+  "license": "MIT",
   "scripts": {
     "build": "webpack --config webpack.prod.js -p",
     "dev": "webpack-dev-server --config webpack.dev.js",
     "lint": "tslint --project tsconfig.json",
     "lint:fix": "tslint --project tsconfig.json --fix"
   },
-  "author": {
-    "name": "Microsoft Corporation"
-  },
-  "license": "MIT",
   "dependencies": {
     "@microsoft/teams-js": "^1.2.6",
     "babel-polyfill": "^6.26.0",
     "csx": "^8.5.0",
-    "msteams-ui-components-react": "^0.6.2",
+    "msteams-ui-components-react": "^0.7.3",
     "msteams-ui-icons-react": "^0.3.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
     "react-live": "^1.12.0",
     "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "typestyle": "^1.5.1"
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "@types/lodash.memoize": "^4.1.3",

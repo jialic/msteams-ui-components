@@ -1,5 +1,4 @@
 import { checkbox } from 'msteams-ui-styles-core/lib/components/checkbox';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { connectTeamsComponent, IInjectedTeamsProps } from '../index';
 import classes from '../utils/classes';
@@ -9,41 +8,25 @@ export interface ICheckboxProps
   extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   label?: string;
   checked?: boolean;
-  onChecked?: (checked: boolean, value: any) => void;
+  onToggle?: (checked: boolean) => void;
 }
 
 interface ICheckboxState {
   id: string;
+  labelId: string;
 }
 
-interface ICheckboxContext {
-  onChecked?: (checked: boolean, value: any) => void;
-  values?: any[];
-}
+type Props = IInjectedTeamsProps & ICheckboxProps;
 
-type ConnectedProps = ICheckboxProps & IInjectedTeamsProps;
-
-class CheckboxInner extends React.Component<ConnectedProps, ICheckboxState> {
-  // TODO: remove as any when @types are updated
-  static propTypes: PropTypes.ValidationMap<ConnectedProps> = {
-    onChecked: PropTypes.func,
-    value: PropTypes.any.isRequired,
-    checked: PropTypes.bool,
-    label: PropTypes.string,
-  } as any;
-
-  static contextTypes = {
-    onChecked: PropTypes.func,
-    values: PropTypes.array,
+class CheckboxInner extends React.Component<Props, ICheckboxState> {
+  state: ICheckboxState = {
+    id: uniqueId('ts-cb-'),
+    labelId: uniqueId('ts-cbl-'),
   };
-  context: ICheckboxContext = {};
-
-  state = { id: uniqueId('ts-cb-'), labelId: uniqueId('ts-cbl-') };
 
   render() {
-    const { id, required, name, context, className, style, value, checked, onChecked, label, ...rest } = this.props;
+    const { id, required, name, context, className, style, value, checked, onChange, label, ...rest } = this.props;
 
-    const actuallyChecked = this.isChecked();
     const themeClassNames = checkbox(context);
 
     return (
@@ -61,9 +44,9 @@ class CheckboxInner extends React.Component<ConnectedProps, ICheckboxState> {
           type="checkbox"
           aria-labelledby={this.state.labelId}
           aria-required={required}
-          aria-checked={actuallyChecked}
-          checked={actuallyChecked}
-          onClick={this.click}
+          aria-checked={checked}
+          checked={checked}
+          onChange={this.onChange}
           required={required}
           readOnly
           {...rest} />
@@ -72,23 +55,10 @@ class CheckboxInner extends React.Component<ConnectedProps, ICheckboxState> {
     );
   }
 
-  private isChecked = (): boolean => {
-    if (Array.isArray(this.context.values)) {
-      return this.context.values.indexOf(this.props.value) >= 0;
+  private onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (this.props.onToggle) {
+      this.props.onToggle(e.target.checked);
     }
-    return this.props.checked || false;
-  }
-
-  private click = (e: React.MouseEvent<HTMLInputElement>) => {
-    const checked = this.isChecked();
-    if (this.context.onChecked) {
-      this.context.onChecked(!checked, this.props.value);
-    }
-    if (this.props.onChecked) {
-      this.props.onChecked(!checked, this.props.value);
-    }
-
-    return this.props.onClick && this.props.onClick(e);
   }
 }
 

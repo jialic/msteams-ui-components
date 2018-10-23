@@ -1,5 +1,5 @@
 import * as microsoftTeams from '@microsoft/teams-js';
-import { Panel, Surface, Tab, TeamsComponentContext, ThemeStyle } from 'msteams-ui-components-react';
+import { ThemeStyle, TeamsComponentContext } from 'msteams-ui-components-react';
 import * as React from 'react';
 import { render } from 'react-dom';
 import { HashRouter } from 'react-router-dom';

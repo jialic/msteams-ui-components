@@ -1,5 +1,4 @@
 import { radioButton } from 'msteams-ui-styles-core/lib/components/radio-button';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { connectTeamsComponent, IInjectedTeamsProps } from '../index';
 import classes from '../utils/classes';
@@ -7,43 +6,27 @@ import uniqueId from '../utils/uniqueId';
 
 export interface IRadiobuttonProps
   extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-  onSelected?: (selected: boolean, value: any) => void;
   selected?: boolean;
   label?: string;
+  onToggle?: (selected: boolean) => void;
 }
 
 interface IRadiobuttonState {
   id: string;
-}
-
-interface IRadiobuttonContext {
-  onSelected?: (selected: boolean, value: any) => void;
-  value?: any;
+  labelId: string;
 }
 
 type Props = IRadiobuttonProps & IInjectedTeamsProps;
 
 class RadiobuttonInner extends React.Component<Props, IRadiobuttonState> {
-  // TODO: remove as any when @types updated
-  static propTypes: PropTypes.ValidationMap<Props> = {
-    onSelected: PropTypes.func,
-    value: PropTypes.any.isRequired,
-    selected: PropTypes.bool,
-    label: PropTypes.string,
-  } as any;
-
-  static contextTypes = {
-    onSelected: PropTypes.func,
-    value: PropTypes.any,
+  state: IRadiobuttonState = {
+    id: uniqueId('ts-rb-'),
+    labelId: uniqueId('ts-rbl-'),
   };
 
-  context: IRadiobuttonContext = {};
-  state = { id: uniqueId('ts-rb-'), labelId: uniqueId('ts-rbl-') };
-
   render() {
-    const { id, required, name, context, className, style, value, label, onSelected, ...rest } = this.props;
+    const { id, required, name, context, className, style, value, label, selected, ...rest } = this.props;
 
-    const actuallySelected = this.isSelected();
     const themeClassNames = radioButton(context);
 
     return (
@@ -61,9 +44,9 @@ class RadiobuttonInner extends React.Component<Props, IRadiobuttonState> {
           type="radio"
           aria-labelledby={this.state.labelId}
           aria-required={required}
-          aria-checked={actuallySelected}
-          checked={actuallySelected}
-          onClick={this.click}
+          aria-checked={selected}
+          checked={selected}
+          onChange={this.onChange}
           readOnly
           {...rest} />
         <span aria-hidden className={themeClassNames.radio}></span>
@@ -71,22 +54,10 @@ class RadiobuttonInner extends React.Component<Props, IRadiobuttonState> {
     );
   }
 
-  private isSelected = (): boolean => {
-    if (this.context.value != null) {
-      return this.context.value === this.props.value;
+  private onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (this.props.onToggle) {
+      this.props.onToggle(e.target.checked);
     }
-    return this.props.selected || false;
-  }
-
-  private click = (e: React.MouseEvent<HTMLInputElement>) => {
-    if (this.context.onSelected) {
-      this.context.onSelected(true, this.props.value);
-    }
-    if (this.props.onSelected) {
-      this.props.onSelected(true, this.props.value);
-    }
-
-    return this.props.onClick && this.props.onClick(e);
   }
 }
 

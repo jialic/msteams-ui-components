@@ -1,8 +1,6 @@
-import { IContext } from 'msteams-ui-components-react';
 import { style } from 'typestyle';
 
-export function content(context: IContext) {
-  const { rem } = context;
+export function content() {
   return {
     container: style({
       display: 'flex',

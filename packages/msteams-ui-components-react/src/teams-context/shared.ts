@@ -1,18 +1,11 @@
-import { IContext } from 'msteams-ui-styles-core';
 import * as PropTypes from 'prop-types';
+import { IContext } from '.';
 
 export const ContextProps = {
   subscribe: PropTypes.func.isRequired,
 };
 
-export interface IThemeObserver {
-  (context: IContext): void;
+export interface IInjectedTeamsProps {
+  readonly context: IContext;
 }
 
-export interface IComponentContext {
-  subscribe: (observer: IThemeObserver) => IUnsubscribe;
-}
-
-export interface IUnsubscribe {
-  (): void;
-}

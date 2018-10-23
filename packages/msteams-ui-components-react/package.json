@@ -15,6 +15,7 @@
     "prepublishOnly": "yarn && yarn build",
     "build": "tsc -b",
     "build:commonjs": "tsc -b tsconfig.commonjs.json",
+    "dev": "tsc -b -w",
     "lint": "tslint --project tsconfig.json",
     "lint:fix": "tslint --project tsconfig.json --fix"
   },

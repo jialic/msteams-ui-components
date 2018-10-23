@@ -6,6 +6,7 @@ import { connectTeamsComponent, IInjectedTeamsProps } from '../index';
 import classes from '../utils/classes';
 import uniqueId from '../utils/uniqueId';
 import { DropdownItem } from './item';
+import { findIndex } from 'lodash';
 
 export interface IDropdownProps
   extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
@@ -201,7 +202,9 @@ class DropdownInternal extends React.Component<IDropdownProps & IInjectedTeamsPr
     }
   }
 
-  private currentIndex = () => this.itemButtons.findIndex((elm) => elm.hasFocus());
+  private currentIndex = () => {
+    return findIndex(this.itemButtons, (elm) => elm.hasFocus());
+  }
 
   private focusNext = () => {
     const current = this.currentIndex();

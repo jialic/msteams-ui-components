@@ -1,6 +1,5 @@
-import { Panel, PanelBody, PanelFooter, PanelHeader } from 'msteams-ui-components-react';
 import * as React from 'react';
-import { Redirect, Route, Switch } from 'react-router';
+import { Route, Switch } from 'react-router';
 import { Routes } from '../routes';
 import { Description } from './description';
 import { PreviewSection } from './preview-section';

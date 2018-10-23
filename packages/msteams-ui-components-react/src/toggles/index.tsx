@@ -12,7 +12,7 @@ export interface IToggleProps
 }
 
 class ToggleView extends React.Component<IToggleProps & IInjectedTeamsProps>
-implements IFocusable {
+  implements IFocusable {
   private button: HTMLButtonElement | null = null;
 
   componentDidMount() {
@@ -59,7 +59,7 @@ implements IFocusable {
     );
   }
 
-  private click = (e: React.MouseEvent<HTMLButtonElement>) => {
+  private click = () => {
     this.props.onToggle(!this.props.checked);
   }
 }

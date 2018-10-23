@@ -1,44 +1,36 @@
 import { radioButtonGroup } from 'msteams-ui-styles-core/lib/components/radio-button-group';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { connectTeamsComponent } from '../teams-context/connect-teams-component';
-import { IInjectedTeamsProps } from '../teams-context/connected-component';
 import classes from '../utils/classes';
 import uniqueId from '../utils/uniqueId';
+import { IInjectedTeamsProps, IRadiobuttonProps } from '..';
+import { map } from 'lodash';
+import { Radiobutton } from './radiobutton';
 
 export interface IRadiobuttonGroupProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   label?: string;
   errorLabel?: string;
-  onSelected?: (value: any) => void;
-  value?: any;
+  radionButtons: IRadiobuttonProps[];
 }
 
 type Props = IRadiobuttonGroupProps & IInjectedTeamsProps;
 
-class RadiobuttonGroupInner extends React.Component<Props> {
-  static childContextTypes = {
-    onSelected: PropTypes.func,
-    value: PropTypes.any,
-  };
+type CompState = {
+  groupId: string;
+  labelId: string;
+};
 
-  static propTypes: PropTypes.ValidationMap<Props> = {
-    onSelected: PropTypes.func,
-    value: PropTypes.any,
-  } as any;
+class RadiobuttonGroupInner extends React.Component<Props, CompState> {
 
-  state = {
+  state: CompState = {
     labelId: uniqueId('ts-rgl'),
     groupId: uniqueId('ts-rg'),
   };
 
   render() {
-    const {
-      context, children, className,
-      onSelected, value, label, errorLabel,
-      ...rest } = this.props;
+    const { context, children, className, label, errorLabel, ...rest } = this.props;
     const themeClassNames = radioButtonGroup(context);
-    const actualId = this.state.groupId;
 
     const hasLabel = !!label;
     const hasError = !!errorLabel;
@@ -48,33 +40,22 @@ class RadiobuttonGroupInner extends React.Component<Props> {
         <label
           id={this.state.labelId}
           aria-live="polite"
-          htmlFor={actualId}>
+          htmlFor={this.state.groupId}>
           {hasLabel ? <span className={themeClassNames.label}>{label}</span> : null}
           {hasError ? <span className={themeClassNames.errorLabel}>{errorLabel}</span> : null}
         </label>
         <div
-          id={actualId}
+          id={this.state.groupId}
           role="radiogroup"
           aria-labelledby={this.state.labelId}
           className={classes(themeClassNames.container, className)}
           aria-invalid={hasError}>
-          {children}</div>
+          {map(this.props.radionButtons, (r) => (
+            <Radiobutton {...r} />
+          ))}
+        </div>
       </div>
     );
-  }
-
-  // tslint:disable-next-line:no-unused-variable
-  private getChildContext() {
-    return {
-      onSelected: this.handleChange,
-      value: this.props.value,
-    };
-  }
-
-  private handleChange = (selected: boolean, value: any) => {
-    if (selected && this.props.onSelected) {
-      this.props.onSelected(value);
-    }
   }
 }
 

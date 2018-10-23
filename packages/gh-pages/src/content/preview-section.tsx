@@ -5,7 +5,7 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 import * as styles from './styles';
 
 export interface IPreviewSectionProps {
-   code: string;
+  code: string;
 }
 
 export interface IPreviewSectionState {
@@ -20,11 +20,11 @@ export class PreviewSectionInner extends React.Component<ConnectedProps, IPrevie
   };
 
   render() {
-    const { context, code } = this.props;
+    const { code } = this.props;
     const { codeHidden } = this.state;
-    const classes = styles.content(context);
+    const classes = styles.content();
 
-    return <LiveProvider className={classes.container} code={code} scope={{...Components, ...Icons}}>
+    return <LiveProvider className={classes.container} code={code} scope={{ ...Components, ...Icons }}>
       <LivePreview className={classes.preview} />
       <Components.SecondaryButton
         className={classes.codeToggle}
@@ -38,7 +38,7 @@ export class PreviewSectionInner extends React.Component<ConnectedProps, IPrevie
   }
 
   private toggleCode = () => {
-    this.setState({codeHidden: !this.state.codeHidden});
+    this.setState({ codeHidden: !this.state.codeHidden });
   }
 }
 

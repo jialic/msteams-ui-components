@@ -1,12 +1,25 @@
 import * as React from 'react';
-import { ConnectedComponent, IInjectedTeamsProps } from './connected-component';
+import { TeamsContext } from './teams-component-context';
+import { IInjectedTeamsProps } from '.';
 
 export function connectTeamsComponent<TChildProps>(Component: React.ComponentType<TChildProps & IInjectedTeamsProps>): React.ComponentType<TChildProps> {
-  return (props: TChildProps) => {
+  class ConnectedTeamsComponent extends React.Component<TChildProps & { forwardedRef: any }> {
+    render() {
+      const { forwardedRef, ...rest } = this.props as any;
+
+      return (
+        <TeamsContext.Consumer>
+          {context => (
+            <Component ref={forwardedRef} {...rest} {...context} />
+          )}
+        </TeamsContext.Consumer>
+      );
+    }
+  }
+
+  return React.forwardRef((props: TChildProps, ref: any) => {
     return (
-      <ConnectedComponent render={(connectedProps: IInjectedTeamsProps) => (
-        <Component {...props} {...connectedProps} />
-      )} />
+      <ConnectedTeamsComponent {...props} forwardedRef={ref} />
     );
-  };
+  });
 }

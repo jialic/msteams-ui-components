@@ -2,6 +2,7 @@ import 'mousetrap';
 import { tab, TabStyles } from 'msteams-ui-styles-core/lib/components/tab';
 import * as React from 'react';
 import { connectTeamsComponent, IInjectedTeamsProps } from '../index';
+import { findIndex } from 'lodash';
 
 export interface ITabProps {
   tabs: ITabItem[];
@@ -44,7 +45,8 @@ class TabInternal extends React.Component<ITabProps & IInjectedTeamsProps> {
       <div
         className={styles.container}
         ref={(ref) => this.tab = ref!}
-        role="tablist">
+        role="tablist"
+      >
         {tabs.map(renderTab)}
       </div>
     );
@@ -102,7 +104,9 @@ class TabInternal extends React.Component<ITabProps & IInjectedTeamsProps> {
     this.itemButtons[next].focus();
   }
 
-  private currentIndex = () => this.itemButtons.findIndex((elm) => elm === document.activeElement);
+  private currentIndex = () => {
+    return findIndex(this.itemButtons, (elm) => elm === document.activeElement);
+  }
 }
 
 export const Tab = connectTeamsComponent(TabInternal);

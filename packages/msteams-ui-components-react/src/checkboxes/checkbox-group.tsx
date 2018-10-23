@@ -1,45 +1,29 @@
 import { checkboxGroup } from 'msteams-ui-styles-core/lib/components/checkbox-group';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { connectTeamsComponent } from '../teams-context/connect-teams-component';
-import { IInjectedTeamsProps } from '../teams-context/connected-component';
-import add from '../utils/add';
 import classes from '../utils/classes';
-import remove from '../utils/remove';
 import uniqueId from '../utils/uniqueId';
+import { IInjectedTeamsProps } from '..';
+import { ICheckboxProps, Checkbox } from './checkbox';
+import { map } from 'lodash';
 
 export interface ICheckboxGroupProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   label?: string;
   errorLabel?: string;
-  onChecked?: (values: any[]) => void;
-  values?: any[];
+  checkboxes: ICheckboxProps[];
 }
 
 type Props = ICheckboxGroupProps & IInjectedTeamsProps;
 
 class CheckboxGroupInner extends React.Component<Props> {
-  static childContextTypes = {
-    onChecked: PropTypes.func,
-    values: PropTypes.array,
-  };
-
-  // TODO: remove as any when @types are updated
-  static propTypes: PropTypes.ValidationMap<Props> = {
-    onChecked: PropTypes.func,
-    values: PropTypes.array,
-  } as any;
-
   state = {
     labelId: uniqueId('ts-rgl'),
     groupId: uniqueId('ts-cg-'),
   };
 
   render() {
-    const {
-      context, className, onChecked,
-      values, label, errorLabel, children,
-      ...rest } = this.props;
+    const { context, className, label, errorLabel, checkboxes, ...rest } = this.props;
     const themeClassNames = checkboxGroup(context);
     const actualId = this.state.groupId;
 
@@ -59,26 +43,14 @@ class CheckboxGroupInner extends React.Component<Props> {
           role="group"
           aria-labelledby={this.state.labelId}
           className={classes(themeClassNames.container, className)}
-          aria-invalid={hasError}>
-          {children}</div>
+          aria-invalid={hasError}
+        >
+          {map(checkboxes, (c) => (
+            <Checkbox {...c} />
+          ))}
+        </div>
       </div>
     );
-  }
-
-  // tslint:disable-next-line:no-unused-variable
-  private getChildContext() {
-    return {
-      onChecked: this.handleChange,
-      values: this.props.values,
-    };
-  }
-
-  private handleChange = (checked: boolean, value: any) => {
-    if (this.props.onChecked) {
-      let values = Array.isArray(this.props.values) ? this.props.values : [];
-      values = checked ? add(values, value) : remove(values, value);
-      this.props.onChecked(values);
-    }
   }
 }
 
